@@ -1,6 +1,6 @@
 package br.senai.sp.jandira.model;
 
-public class Tabuada {
+	public class Tabuada {
 	
 	public int multiplicando,
 	minMultiplicador,
@@ -26,7 +26,9 @@ public class Tabuada {
 		}
 
 		return tabuada;
+		
+		
 
 	}	
-
+	
 }
