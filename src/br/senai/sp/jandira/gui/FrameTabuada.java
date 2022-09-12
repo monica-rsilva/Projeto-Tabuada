@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import br.senai.sp.jandira.model.Tabuada;
 
@@ -59,22 +60,23 @@ public class FrameTabuada {
 		
 		ImageIcon calculadoraimagem = new ImageIcon (getClass().getResource("calculadora_icon.png"));
 		JLabel calculadora = new JLabel(calculadoraimagem);
-		calculadora.setBounds(30,10,50,40);
+		calculadora.setBounds(15,20,50,40);
 		
 		//Criar uma label
 		JLabel labelTitulo = new JLabel();
 		labelTitulo.setText("Tabuada 1.0");
-		labelTitulo.setBounds(90, 10, 250, 30);
-		labelTitulo.setForeground(new Color(41,171,171));
+		labelTitulo.setBounds(80, 10, 250, 30);
+		labelTitulo.setForeground(new Color(45,45,45));
 		labelTitulo.setFont(fonteDoTitulo);
 		
-		//JTextArea texto = new JTextArea (2,6);
-		
-		JLabel labeltexto = new JLabel();
-		labeltexto.setText("Com a tabuada 1.0 os seus problemas acabaram. Calcule a tabuada que desejar em segundos!");
-		labeltexto.setBounds(30, 35, 250, 60);
-		labeltexto.setForeground(new Color(41,171,171));
-		labeltexto.setFont(fonteDasLabels);
+		JTextArea label = new JTextArea ("Com a tabuada 1.0 os seus problemas acabaram. Calcule a tabuada que desejar em segundos!");
+		label.setBounds(80, 40, 290, 60);
+		label.setWrapStyleWord(true);
+		label.setBackground(CorDoPainel);
+		label.setEditable(false);
+		label.setLineWrap(true);
+		label.setFont(fonteDasLabels);
+		label.setForeground(new Color(45,45,45));
 		
 		JLabel labelMultiplicando = new JLabel();
 		labelMultiplicando.setText("Multiplicando:");
@@ -87,7 +89,7 @@ public class FrameTabuada {
 		
 		JLabel labelMinMultiplicador = new JLabel();
 		labelMinMultiplicador.setText("Mínimo Multiplicador:");
-		labelMinMultiplicador.setBounds(30, 140, 160, 30);
+		labelMinMultiplicador.setBounds(40, 140, 160, 30);
 		labelMinMultiplicador.setForeground(Color.WHITE);
 		labelMinMultiplicador.setFont(fonteDasLabels);
 		
@@ -96,7 +98,7 @@ public class FrameTabuada {
 		
 		JLabel labelMaxMultiplicador = new JLabel();
 		labelMaxMultiplicador.setText("Máximo Multiplicador:");
-		labelMaxMultiplicador.setBounds(30, 190, 160, 30);
+		labelMaxMultiplicador.setBounds(40, 190, 160, 30);
 	    labelMaxMultiplicador.setForeground(Color.WHITE);
 		labelMaxMultiplicador.setFont(fonteDasLabels);
 		
@@ -143,7 +145,11 @@ public class FrameTabuada {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				scroll.setVisible(false);
+				textMultiplicando.setText("");
+				textMinMultiplicador.setText("");
+				textMaxMultiplicador.setText("");
+				textMultiplicando.requestFocus();
+				
 			}
 		});
 		
@@ -164,10 +170,7 @@ public class FrameTabuada {
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println(e.getKeyCode());
-				if (e.getKeyCode() == 10) {
-					textMultiplicando.requestFocus();
-				}
+			
 			}
 		});
 		
@@ -192,24 +195,24 @@ public class FrameTabuada {
 			});
 		
 				textMaxMultiplicador.addKeyListener(new KeyListener() {
-				
-				@Override
-				public void keyTyped(KeyEvent e) {
-
-				}
-				
-				@Override
-				public void keyReleased(KeyEvent e) {
 					
-					textMaxMultiplicador.setText(textMinMultiplicador.getText().replaceAll("[^0-9]", ""));
+					@Override
+					public void keyTyped(KeyEvent e) {
+						
+						
+					}
 					
-				}
-				
-				@Override
-				public void keyPressed(KeyEvent e) {
+					@Override
+					public void keyReleased(KeyEvent e) {
+						textMaxMultiplicador.setText(textMaxMultiplicador.getText().replaceAll("[^0-9]", ""));
+						
+					}
 					
-				}
-			});
+					@Override
+					public void keyPressed(KeyEvent e) {
+						
+					}
+				});
 
 		
 		
@@ -218,7 +221,7 @@ public class FrameTabuada {
 		painel.add(buttonLimpar);
 		painel.add(calculadora);
 		painel.add(labelTitulo);
-		painel.add(labeltexto);
+		painel.add(label);
 		painel.add(labelMultiplicando);
 		painel.add(textMultiplicando);
 		painel.add(labelMinMultiplicador);
